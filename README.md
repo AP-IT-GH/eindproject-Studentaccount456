@@ -5,7 +5,7 @@
 Group members:
 
 - Boukhada Youssef (yousef12333)
-- Cuypers Jan (Studentaccount456)
+- Cuypers Jan (Studentaccount456 & Janprogramming4 (because of vscode glitch))
 - Stoica Marius (MariusSpaceEngineer)
 - Van Loon Joppe (Joppe-vL)
 
