@@ -1,0 +1,42 @@
+{
+    "name": "root",
+    "metadata": {
+        "timer_format_version": "0.1.0",
+        "start_time_seconds": "1683015970",
+        "python_version": "3.9.13 (main, Aug 25 2022, 23:51:50) [MSC v.1916 64 bit (AMD64)]",
+        "command_line_arguments": "C:\\Users\\Gebruiker\\anaconda3\\Scripts\\mlagents-learn ChaserAgent.yaml --run-id=test1 --force",
+        "mlagents_version": "0.30.0",
+        "mlagents_envs_version": "0.30.0",
+        "communication_protocol_version": "1.5.0",
+        "pytorch_version": "1.7.1+cu110",
+        "numpy_version": "1.21.2",
+        "end_time_seconds": "1683016044"
+    },
+    "total": 73.9674656,
+    "count": 1,
+    "self": 0.03276470000000131,
+    "children": {
+        "run_training.setup": {
+            "total": 0.5431827,
+            "count": 1,
+            "self": 0.5431827
+        },
+        "TrainerController.start_learning": {
+            "total": 73.3915182,
+            "count": 1,
+            "self": 0.00025829999999871234,
+            "children": {
+                "TrainerController._reset_env": {
+                    "total": 73.3912122,
+                    "count": 1,
+                    "self": 73.3912122
+                },
+                "TrainerController._save_models": {
+                    "total": 4.7699999996098086e-05,
+                    "count": 1,
+                    "self": 4.7699999996098086e-05
+                }
+            }
+        }
+    }
+}
