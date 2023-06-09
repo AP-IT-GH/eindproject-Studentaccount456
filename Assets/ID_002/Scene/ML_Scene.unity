@@ -14,10 +14,10 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 0
+  m_Fog: 1
   m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.01
+  m_FogDensity: 0.15
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
@@ -8310,7 +8310,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 0.7426326, g: 0.745283, b: 0.6285689, a: 1}
-  m_Intensity: 2.5
+  m_Intensity: 0.4
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -8470,7 +8470,7 @@ GameObject:
   - component: {fileID: 1642415244}
   - component: {fileID: 1642415243}
   m_Layer: 0
-  m_Name: alt598
+  m_Name: Moose_Ghost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8744,7 +8744,7 @@ GameObject:
   - component: {fileID: 1722029042}
   - component: {fileID: 1722029041}
   m_Layer: 0
-  m_Name: alt577
+  m_Name: Bear_Ghost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
