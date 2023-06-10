@@ -12,9 +12,13 @@ public class SceneManagement : MonoBehaviour
         StartCoroutine(LoadSceneWithTransition(1));
     }
 
-    public void LoadEndScene()
+    public void LoadDeathScene()
     {
         StartCoroutine(LoadSceneWithTransition(2));
+    }
+    public void LoadWinScene()
+    {
+        StartCoroutine(LoadSceneWithTransition(3));
     }
 
     public void QuitApplicationNow()
