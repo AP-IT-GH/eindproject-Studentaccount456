@@ -35,9 +35,19 @@ public class AgentScript : Agent
         Target.localPosition = new Vector3(Random.value * 8 - 4, 0.5f, Random.value * 8 - 4);
     }
 
+
+    //Adding more observations so the agent can take more informed actions => Improves learning efficiency
+    //DANGER: adding too much observations because this can lead to slower training times and worse performance. (We need to keep it balanced)
     public override void CollectObservations(VectorSensor sensor)
-    {    // Agent position    
+    {
+        // Agent position
         sensor.AddObservation(this.transform.localPosition);
+
+        // Agent velocity
+        sensor.AddObservation(agentRigidbody.velocity);
+
+        // Distance to target
+        sensor.AddObservation(Vector3.Distance(this.transform.localPosition, Target.localPosition));
     }
 
     public float speedMultiplier = 0.1f;
@@ -68,22 +78,29 @@ public class AgentScript : Agent
         float moveSpeed = 5f;
         agentRigidbody.velocity = addForce * moveSpeed + new Vector3(0, agentRigidbody.velocity.y, 0);
 
-        // Rewards
+        // Calculate distance to target
         float distanceToTarget = Vector3.Distance(this.transform.localPosition, Target.localPosition);
 
-        // Target reached
+        // Give a reward if the agent is close to the target
         if (distanceToTarget < 1.42f)
         {
             SetReward(1.0f);
-            EndEpisode();
+            EndEpisode();  // End the episode
         }
 
-        // Agent fell of platform?
-        else if (this.transform.localPosition.y < 0)
+        // Penalize the agent for being far from the target
+        else
         {
-            EndEpisode();
+            SetReward(-0.01f);
+        }
+
+        // Agent fell off platform?
+        if (this.transform.localPosition.y < 0)
+        {
+            EndEpisode();  // End the episode
         }
     }
+
 
     private void OnTriggerEnter(Collider other)
     {
