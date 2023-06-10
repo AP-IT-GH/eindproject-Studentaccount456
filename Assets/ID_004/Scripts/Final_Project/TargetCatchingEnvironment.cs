@@ -6,42 +6,34 @@ using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
 
 // Environment Controller
-public class MultiAgentGroup : MonoBehaviour
+public class TargetCatchingEnvironment : MonoBehaviour
 {
     // Add agents to the group using the RegisterAgent(Agent agent) method.
     // All agents in the same group must have the same behavior name and Behavior Parameters
     private SimpleMultiAgentGroup agentGroup;
     private GameObject targetObject;
-    private bool isTargetCaught;
+    //private bool isTargetCaught;
+    private AgentScript agent1;
+    private AgentScript agent2;
 
-    Dictionary<Agent, Vector3> agentStartingPositions = new Dictionary<Agent, Vector3>();
-    Dictionary<Agent, Quaternion> agentStartingRotations = new Dictionary<Agent, Quaternion>();
+    private List<Vector3> agentStartingPositions = new List<Vector3>();
+    private List<Quaternion> agentStartingRotations = new List<Quaternion>();
     Vector3 targetStartingPosition;
     Quaternion targetStartingRotation;
 
     private void Start()
     {
-        // Register agents to the group
-        foreach (var agent in GetComponentsInChildren<Agent>())
-        {
-            agentGroup.RegisterAgent(agent);
-            agentStartingPositions.Add(agent, agent.transform.position);
-            agentStartingRotations.Add(agent, agent.transform.rotation);
-        }
         // Find the target object in the scene
         targetObject = GameObject.FindWithTag("Target");
-        targetStartingPosition = targetObject.transform.position;
-        targetStartingRotation = targetObject.transform.rotation;
-    }
 
-    private void Update()
-    {
-        if (isTargetCaught)
-        {
-            // End the episode and reset the scene
-            agentGroup.EndGroupEpisode();
-            ResetScene();
-        }
+        // Find the two agents in the scene
+        agent1 = GameObject.Find("Agent1").GetComponent<AgentScript>();
+        agent2 = GameObject.Find("Agent2").GetComponent<AgentScript>();
+
+        // Register the two agents to a new SimpleMultiAgentGroup
+        agentGroup = new SimpleMultiAgentGroup();
+        agentGroup.RegisterAgent(agent1);
+        agentGroup.RegisterAgent(agent2);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -51,24 +43,32 @@ public class MultiAgentGroup : MonoBehaviour
             // Set a group reward for catching the target
             agentGroup.AddGroupReward(1f);
 
-            // End the episode if both agents have caught the target      
-            isTargetCaught = true;         
+            // End the episode if both agents have caught the target
+            //isTargetCaught = true;
+            agentGroup.EndGroupEpisode();  // End the episode
+            ResetScene();
         }
     }
+
 
     private void ResetScene()
     {
         // Reset the target object and agents to their starting positions
         targetObject.transform.position = targetStartingPosition;
         targetObject.transform.rotation = targetStartingRotation;
+        int i = 0;
         foreach (var agent in agentGroup.GetRegisteredAgents())
         {
-            agent.transform.position = agentStartingPositions[agent];
-            agent.transform.rotation = agentStartingRotations[agent];
+            agent.transform.position = agentStartingPositions[i];
+            agent.transform.rotation = agentStartingRotations[i];
             agent.GetComponent<Rigidbody>().velocity = Vector3.zero;
             agent.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+            i++;
         }
-        isTargetCaught = false;
+        //isTargetCaught = false;
+
     }
+
+
 }
 

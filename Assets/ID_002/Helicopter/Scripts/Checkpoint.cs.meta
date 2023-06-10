@@ -1,8 +1,19 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/ID_002/Helicopter/Scripts/Checkpoint.cs.meta
 guid: 662f11f23e8c6c749a9827a1fb44e34d
 timeCreated: 1436872336
+=======
+<<<<<<< HEAD
+guid: 95bc2595fa8bca24c854b01a01480429
+MonoImporter:
+  externalObjects: {}
+=======
+guid: 476cc7d7cd987cc16adc216baab94a0a
+timeCreated: 1484146680
+>>>>>>> 2e934995e18290da0c01cf71f0d8f9ab2a4a5f20:Assets/ID_002/TheTalesFactory/Photoscanned MoutainsRocks PBR/_ReadMe & Publisher Window/Inspector Info/Scripts/Editor/PublisherReadmeEditor.cs.meta
 licenseType: Store
 MonoImporter:
+>>>>>>> 4bfceabe5c841c9bbae798cc28c394a97bb0bab2
   serializedVersion: 2
   defaultReferences: []
   executionOrder: 0
