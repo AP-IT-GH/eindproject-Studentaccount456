@@ -6,7 +6,7 @@ using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
 
 // Environment Controller
-public class TargetCatchingEnvironment : MonoBehaviour
+public class TargetCatchingEnvironment2 : MonoBehaviour
 {
     // Add agents to the group using the RegisterAgent(Agent agent) method.
     // All agents in the same group must have the same behavior name and Behavior Parameters
