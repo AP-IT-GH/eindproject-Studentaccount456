@@ -13,6 +13,8 @@ public class TargetCatchingEnvironment : MonoBehaviour
     private SimpleMultiAgentGroup agentGroup;
     private GameObject targetObject;
     //private bool isTargetCaught;
+    private AgentScript agent1;
+    private AgentScript agent2;
 
     private List<Vector3> agentStartingPositions = new List<Vector3>();
     private List<Quaternion> agentStartingRotations = new List<Quaternion>();
@@ -21,17 +23,17 @@ public class TargetCatchingEnvironment : MonoBehaviour
 
     private void Start()
     {
-        // Register agents to the group
-        foreach (var agent in GetComponentsInChildren<Agent>())
-        {
-            agentGroup.RegisterAgent(agent);
-            agentStartingPositions.Add(agent.transform.position);
-            agentStartingRotations.Add(agent.transform.rotation);
-        }
         // Find the target object in the scene
         targetObject = GameObject.FindWithTag("Target");
-        targetStartingPosition = targetObject.transform.position;
-        targetStartingRotation = targetObject.transform.rotation;
+
+        // Find the two agents in the scene
+        agent1 = GameObject.Find("Agent1").GetComponent<AgentScript>();
+        agent2 = GameObject.Find("Agent2").GetComponent<AgentScript>();
+
+        // Register the two agents to a new SimpleMultiAgentGroup
+        agentGroup = new SimpleMultiAgentGroup();
+        agentGroup.RegisterAgent(agent1);
+        agentGroup.RegisterAgent(agent2);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -64,6 +66,9 @@ public class TargetCatchingEnvironment : MonoBehaviour
             i++;
         }
         //isTargetCaught = false;
+
     }
+
+
 }
 

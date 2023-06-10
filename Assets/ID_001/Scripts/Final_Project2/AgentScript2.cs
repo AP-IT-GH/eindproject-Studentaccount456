@@ -9,6 +9,8 @@ public class AgentScript2 : Agent
 {
     private GameObject targetObject;
     public Transform Target;
+    public Agent otherAgent;
+
 
     private Rigidbody agentRigidbody;
     private void Awake()
@@ -48,6 +50,10 @@ public class AgentScript2 : Agent
 
         // Distance to target
         sensor.AddObservation(Vector3.Distance(this.transform.localPosition, Target.localPosition));
+
+        // We want to include the other agent his position for the enclosing mechanic
+        // Other agent position
+        sensor.AddObservation(otherAgent.transform.localPosition);
     }
 
     public float speedMultiplier = 0.1f;
@@ -55,37 +61,29 @@ public class AgentScript2 : Agent
 
     public override void OnActionReceived(ActionBuffers actionBuffers)
     {
-        // Actions, size = 2
-        int moveX = actionBuffers.DiscreteActions[0];
-        int moveZ = actionBuffers.DiscreteActions[1];
+        float moveX = actionBuffers.ContinuousActions[0];
+        float moveZ = actionBuffers.ContinuousActions[1];
 
-        Vector3 addForce = new Vector3(0, 0, 0);
-
-        switch (moveX)
-        {
-            case 0: addForce.x = 0f; break;
-            case 1: addForce.x = -1f; break;
-            case 2: addForce.x = +1f; break;
-        }
-
-        switch (moveZ)
-        {
-            case 0: addForce.z = 0f; break;
-            case 1: addForce.z = -1f; break;
-            case 2: addForce.z = +1f; break;
-        }
-
+        Vector3 addForce = new Vector3(moveX, 0, moveZ);
         float moveSpeed = 5f;
-        agentRigidbody.velocity = addForce * moveSpeed + new Vector3(0, agentRigidbody.velocity.y, 0);
+        agentRigidbody.AddForce(addForce * moveSpeed);
 
-        // Calculate distance to target
+
+        // Calculate distance to target and other agent
+        float distanceToOtherAgent = Vector3.Distance(this.transform.localPosition, otherAgent.transform.localPosition);
         float distanceToTarget = Vector3.Distance(this.transform.localPosition, Target.localPosition);
 
-        // Give a reward if the agent is close to the target
-        if (distanceToTarget < 1.42f)
+
+        // Give a reward if the agent is close to the target and close to another agent at the same time (enclosing)
+        if (distanceToTarget < 1.42f && distanceToOtherAgent < 2.0f)
         {
             SetReward(1.0f);
-            EndEpisode();  // End the episode
+        }
+
+        // One agent is close to the target
+        else if (distanceToTarget < 1.42f)
+        {
+            SetReward(0.5f);
         }
 
         // Penalize the agent for being far from the target
@@ -106,9 +104,30 @@ public class AgentScript2 : Agent
     {
         if (other.gameObject == targetObject)
         {
-            // Set a reward for catching the target
-            SetReward(1f);
+            if (this.CompareTag("agent1"))
+            {
+                // This agent caught the target, give a big reward
+                SetReward(1f);
+            }
+            else if (this.CompareTag("agent2"))
+            {
+                // The other agent caught the target, give a big reward
+                otherAgent.SetReward(1f);
+            }
+
+            // Check if both agents are close to the target
+            float distanceToTarget = Vector3.Distance(this.transform.localPosition, Target.localPosition);
+            float otherDistanceToTarget = Vector3.Distance(otherAgent.transform.localPosition, Target.localPosition);
+            if (distanceToTarget < 1.42f && otherDistanceToTarget < 1.42f)
+            {
+                // Both agents are close to the target, give a small reward to both
+                SetReward(0.1f);
+                otherAgent.SetReward(0.1f);
+            }
+
+            // End the episode for both agents
             EndEpisode();
+            otherAgent.EndEpisode();
         }
     }
 

@@ -12,3 +12,7 @@ For more information on how to use the BehaviorParameters component, you can ref
 
 Agentscript onactionreceived:
 If the distance is greater than or equal to the threshold, we give the agent a small negative reward of -0.01. This encourages the agent to move towards the target, but not necessarily to catch it immediately.
+
+Change input to use continous (Don't know yet if this is necessary):
+
+Change the input and output shapes of the agent's brain to use continuous values. You can do this by going to the ML-Agents -> Brain menu in the Unity Editor, selecting the agent's brain, and changing the Action Space Type to Continuous.
