@@ -61,12 +61,28 @@ public class AgentScript : Agent
 
     public override void OnActionReceived(ActionBuffers actionBuffers)
     {
-        float moveX = actionBuffers.ContinuousActions[0];
-        float moveZ = actionBuffers.ContinuousActions[1];
+        // Actions, size = 2
+        int moveX = actionBuffers.DiscreteActions[0];
+        int moveZ = actionBuffers.DiscreteActions[1];
 
-        Vector3 addForce = new Vector3(moveX, 0, moveZ);
+        Vector3 addForce = new Vector3(0, 0, 0);
+
+        switch (moveX)
+        {
+            case 0: addForce.x = 0f; break;
+            case 1: addForce.x = -1f; break;
+            case 2: addForce.x = +1f; break;
+        }
+
+        switch (moveZ)
+        {
+            case 0: addForce.z = 0f; break;
+            case 1: addForce.z = -1f; break;
+            case 2: addForce.z = +1f; break;
+        }
+
         float moveSpeed = 5f;
-        agentRigidbody.AddForce(addForce * moveSpeed);
+        agentRigidbody.velocity = addForce * moveSpeed + new Vector3(0, agentRigidbody.velocity.y, 0);
 
 
         // Calculate distance to target and other agent
