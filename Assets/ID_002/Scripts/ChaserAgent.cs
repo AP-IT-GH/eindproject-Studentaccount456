@@ -1,108 +1,137 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using Unity.MLAgents;
-using Unity.MLAgents.Sensors;
 using Unity.MLAgents.Actuators;
+using Unity.MLAgents.Sensors;
+using UnityEngine;
 
 public class ChaserAgent : Agent
 {
-    public float speed = 5f;
-    public float rotationSpeed = 5f;
-    public float visionRange = 10f;
-    public float visionAngle = 45f;
+    //Variable to hold the rigidbody of the agent
+    Rigidbody rBody;
 
-    private Transform player;
-    private bool playerInSight = false;
+    private float timer;
+    private const float rewardInterval = 10f;
 
+    void Start()
+    {
+        //Assigning the rigidbody
+        rBody = GetComponent<Rigidbody>();
+    }
+
+
+    //Variable to hold the target position
+    public Transform Target;
     public override void OnEpisodeBegin()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-        playerInSight = false;
-        transform.position = new Vector3(Random.Range(-5f, 5f), 0f, Random.Range(-5f, 5f));
-        transform.rotation = Quaternion.identity;
-    }
-
-    public override void CollectObservations(VectorSensor sensor)
-    {
-        // Observe player's position relative to agent
-        Vector3 directionToPlayer = player.position - transform.position;
-        print(sensor);
-       sensor.AddObservation(directionToPlayer.normalized);
-
-        // Observe agent's forward vector
-       sensor.AddObservation(transform.forward);
-    }
-
-    public override void OnActionReceived(ActionBuffers actions)
-    {
-        // Move agent based on action
-        float horizontalInput = actions.ContinuousActions[0];
-        float verticalInput = actions.ContinuousActions[1];
-        transform.Translate(new Vector3(horizontalInput, 0f, verticalInput) * speed * Time.deltaTime);
-
-        // Rotate agent based on action
-        float rotationInput = actions.ContinuousActions[2];
-        transform.Rotate(Vector3.up, rotationInput * rotationSpeed * Time.deltaTime);
-
-        // Check if player is in sight
-        if (CanSeePlayer())
+        timer = rewardInterval;
+        // If the Agent fell, zero its momentum
+        if (this.transform.localPosition.y < 0)
         {
-            playerInSight = true;
-            SetReward(1f);
+            this.rBody.angularVelocity = Vector3.zero;
+            this.rBody.velocity = Vector3.zero;
+            this.transform.localPosition = new Vector3(Random.Range(-90f, 36f),
+                                           -7.360606f,
+                                           Random.Range(-40f, 88f));
+        }
 
-            // Add reward to group reward
-            Academy.Instance.StatsRecorder.Add("GroupReward", 1f);
+        // Move the target to a new spot
+        Target.localPosition = new Vector3(Random.Range(-90f, 36f),
+                                           -7.360606f,
+                                           Random.Range(-40f, 88f));
+    }
 
+
+    public float forceMultiplier = 50;
+    public override void OnActionReceived(ActionBuffers actionBuffers)
+    {
+
+        // Move the agent using the action.
+        MoveAgent(actionBuffers.DiscreteActions);
+
+        timer -= Time.deltaTime;
+        // Rewards
+        float distanceToTarget = Vector3.Distance(this.transform.localPosition, Target.localPosition);
+
+        // Reached target
+        if (distanceToTarget < 7f)
+        {
+            SetReward(10.0f);
             EndEpisode();
         }
 
-        // Chase player if in sight
-        if (playerInSight)
+        // Fell off platform
+        else if (this.transform.localPosition.y < -10f)
         {
-            Vector3 directionToPlayer = player.position - transform.position;
-            transform.rotation = Quaternion.LookRotation(directionToPlayer, Vector3.up);
-            transform.Translate(Vector3.forward * speed * Time.deltaTime);
+            EndEpisode();
+        }
+        else if (timer <= 0)
+        {
+            SetReward(0.5f);
+            timer = rewardInterval;
         }
     }
-
-    public override void Heuristic(in ActionBuffers actionsOut)
+    public bool CheckCollisionWithObstacle()
     {
-        // Allow player to control agent
-        var continuousActionsOut = actionsOut.ContinuousActions;
-       // continuousActionsOut[0] = Input.GetAxis("Horizontal");
-      //  continuousActionsOut[1] = Input.GetAxis("Vertical");
-      //  continuousActionsOut[2] = Input.GetAxis("Rotation");
-    }
+   
+        Collider[] colliders = this.GetComponentsInChildren<Collider>();
 
-    bool CanSeePlayer()
-    {
-        Vector3 directionToPlayer = player.position - transform.position;
-
-        // Check if player is within vision range
-        if (directionToPlayer.magnitude > visionRange)
+        foreach (Collider collider in colliders)
         {
-            return false;
-        }
-
-        // Check if player is within vision angle
-        float angleToPlayer = Vector3.Angle(transform.forward, directionToPlayer);
-        if (angleToPlayer > visionAngle)
-        {
-            return false;
-        }
-
-        // Check if there are any obstacles between enemy and player
-        RaycastHit hitInfo;
-        if (Physics.Raycast(transform.position, directionToPlayer, out hitInfo))
-        {
-            if (hitInfo.transform != player)
+            
+            if (collider.CompareTag("Obstacle"))
             {
-                return false;
+                return true; 
             }
         }
 
-        // If all checks passed, player is in sight
-        return true;
+        return false; 
     }
+
+    public void MoveAgent(ActionSegment<int> act)
+    {
+        var dirToGo = Vector3.zero;
+        var rotateDir = Vector3.zero;
+
+        var action = act[0];
+
+        switch (action)
+        {
+            case 1:
+                dirToGo = transform.forward * 1f;
+                break;
+            case 2: 
+                break;
+            case 3:
+                rotateDir = transform.up * 1f;
+                break;
+            case 4:
+                rotateDir = transform.up * -1f;
+                break;
+            case 5:
+                break;
+        }
+        transform.Rotate(rotateDir, Time.fixedDeltaTime * 200f);
+        rBody.AddForce(dirToGo * 2,
+            ForceMode.VelocityChange);
+    }
+
+
+    public override void Heuristic(in ActionBuffers actionsOut)
+    {
+        var discreteActionsOut = actionsOut.DiscreteActions;
+        if (Input.GetKey(KeyCode.D))
+        {
+            discreteActionsOut[0] = 3;
+        }
+        else if (Input.GetKey(KeyCode.W))
+        {
+            discreteActionsOut[0] = 1;
+        }
+        else if (Input.GetKey(KeyCode.A))
+        {
+            discreteActionsOut[0] = 4;
+        }
+    }
+
 }

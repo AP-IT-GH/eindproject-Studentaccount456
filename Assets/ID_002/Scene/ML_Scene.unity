@@ -6309,7 +6309,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 958715199}
   m_LocalRotation: {x: -0.10753288, y: -0, z: -0, w: 0.99420154}
-  m_LocalPosition: {x: 24.9, y: 77.86, z: 51.27}
+  m_LocalPosition: {x: 24.548, y: 77.926, z: 51.213}
   m_LocalScale: {x: 1, y: 0.99999994, z: 0.99999994}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6333,7 +6333,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 122
   m_CollisionDetection: 0
 --- !u!135 &958715204
 SphereCollider:
@@ -22275,6 +22275,55 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2128615057}
   m_Mesh: {fileID: 4300156, guid: f55006f6a32a71b45a114b4680c1e575, type: 3}
+--- !u!1 &2141426113
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2141426115}
+  - component: {fileID: 2141426114}
+  m_Layer: 0
+  m_Name: LightOrbSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2141426114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2141426113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b089c318eef61804b90141c0f214682f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightOrb: {fileID: 958715199}
+  playerObject: {fileID: 830278046}
+  spawnInterval: 5
+  spawnRadius: 10
+  maxLightOrbs: 3
+--- !u!4 &2141426115
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2141426113}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 24.871834, y: 77.928696, z: 51.013317}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 20
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2143749599
 GameObject:
   m_ObjectHideFlags: 0
