@@ -104,12 +104,12 @@ public class AgentScript2 : Agent
     {
         if (other.gameObject == targetObject)
         {
-            if (this.CompareTag("agent1"))
+            if (this.CompareTag("Agent1"))
             {
                 // This agent caught the target, give a big reward
                 SetReward(1f);
             }
-            else if (this.CompareTag("agent2"))
+            else if (this.CompareTag("Agent2"))
             {
                 // The other agent caught the target, give a big reward
                 otherAgent.SetReward(1f);
