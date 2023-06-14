@@ -6,7 +6,7 @@ using TMPro;
 public class ScoreEvaluation : MonoBehaviour
 {
    [SerializeField] private TextMeshProUGUI scoreText;
-   [SerializeField] private int score;
+    private ScoreManager scoreManager;
 
     private string[] scoreMessages = {
         "Your score of {0} indicates you're a pro!",
@@ -26,12 +26,12 @@ public class ScoreEvaluation : MonoBehaviour
     {
         for (int i = 0; i < scoreRanges.Length; i++)
         {
-            if (score >= scoreRanges[i])
+            if (ScoreManager.amount >= scoreRanges[i])
             {
-                scoreText.text = string.Format(scoreMessages[i], score);
+                scoreText.text = string.Format(scoreMessages[i], ScoreManager.amount);
                 return;
             }
         }
-        scoreText.text = string.Format(scoreMessages[scoreMessages.Length - 1], score);
+        scoreText.text = string.Format(scoreMessages[scoreMessages.Length - 1], ScoreManager.amount);
     }
 }

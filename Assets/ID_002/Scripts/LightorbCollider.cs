@@ -9,6 +9,7 @@ public class LightorbCollider : MonoBehaviour
     [SerializeField] private Animator bearAnimator;
     [SerializeField] private GameObject mooseGhostPrefab;
     [SerializeField] private GameObject bearGhostPrefab;
+    [SerializeField] private GameObject lightorbPrefab;
     //[SerializeField] private TextMeshProUGUI scoreText;
 
     private const float MinY = 22f;
@@ -20,23 +21,23 @@ public class LightorbCollider : MonoBehaviour
     private const float DelayTime = 2f;
     // private const int ScoreIncrement = 10;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.CompareTag("Lightorb"))
+        if (collision.collider.CompareTag("Lightorb"))
         {
-            if (other.CompareTag("MooseGhost"))
+            if (collision.collider.CompareTag("MooseGhost"))
             {
                 mooseAnimator.SetTrigger("MooseDies");
                 InstantiateGhostObject(mooseGhostPrefab);
             }
-            else if (other.CompareTag("BearGhost"))
+            else if (collision.collider.CompareTag("BearGhost"))
             {
                 bearAnimator.SetTrigger("BearDies");
                 InstantiateGhostObject(bearGhostPrefab);
             }
 
-            IncreaseScore();
-            StartCoroutine(DelayedResetPosition(other.gameObject));
+            //IncreaseScore();
+            StartCoroutine(DelayedResetPosition(collision.gameObject));
         }
     }
 
@@ -51,7 +52,6 @@ public class LightorbCollider : MonoBehaviour
 
     private void IncreaseScore()
     {
-
         // currentScore += ScoreIncrement;
         //scoreText.text = currentScore.ToString();
     }

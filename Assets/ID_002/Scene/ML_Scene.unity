@@ -9785,7 +9785,6 @@ GameObject:
   - component: {fileID: 958715200}
   - component: {fileID: 958715204}
   - component: {fileID: 958715203}
-  - component: {fileID: 958715205}
   m_Layer: 0
   m_Name: LightOrb
   m_TagString: Lightorb
@@ -9922,22 +9921,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &958715205
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 958715199}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef264a4d82a30394983293e7f3e54b6a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mooseAnimator: {fileID: 1642415246}
-  bearAnimator: {fileID: 1722029044}
-  mooseGhostPrefab: {fileID: 1642415242}
-  bearGhostPrefab: {fileID: 1722029040}
 --- !u!1001 &971491427
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11011,6 +10994,55 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4329908, guid: 1175c4563a5b466479faa3985e452631, type: 3}
+--- !u!1 &1088190868
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1088190870}
+  - component: {fileID: 1088190869}
+  m_Layer: 0
+  m_Name: LightOrbCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1088190869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1088190868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef264a4d82a30394983293e7f3e54b6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mooseAnimator: {fileID: 1642415246}
+  bearAnimator: {fileID: 1722029044}
+  mooseGhostPrefab: {fileID: 1642415242}
+  bearGhostPrefab: {fileID: 1722029040}
+  lightorbPrefab: {fileID: 958715199}
+--- !u!4 &1088190870
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1088190868}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 20.492334, y: 80.22005, z: 56.963913}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 19
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1101657311
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21286,8 +21318,8 @@ GameObject:
   - component: {fileID: 1642415244}
   - component: {fileID: 1642415243}
   - component: {fileID: 1642415246}
-  - component: {fileID: 1642415248}
   - component: {fileID: 1642415247}
+  - component: {fileID: 1642415248}
   m_Layer: 0
   m_Name: Moose_Ghost
   m_TagString: MooseGhost
@@ -21393,12 +21425,12 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &1642415248
-MeshCollider:
+--- !u!65 &1642415248
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -21407,10 +21439,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4994840608081684954, guid: 821970a07ebfa7d4dab40936bcd504b0, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 0.62640196, y: 2.4327502, z: 2.4150891}
+  m_Center: {x: -0.0084376335, y: 1.2163666, z: -0.04702151}
 --- !u!1 &1656804178
 GameObject:
   m_ObjectHideFlags: 0
@@ -21909,8 +21940,8 @@ GameObject:
   - component: {fileID: 1722029042}
   - component: {fileID: 1722029041}
   - component: {fileID: 1722029044}
-  - component: {fileID: 1722029046}
   - component: {fileID: 1722029045}
+  - component: {fileID: 1722029046}
   m_Layer: 0
   m_Name: Bear_Ghost
   m_TagString: BearGhost
@@ -22016,12 +22047,12 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &1722029046
-MeshCollider:
+--- !u!65 &1722029046
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -22030,10 +22061,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -2099726790228252691, guid: 821970a07ebfa7d4dab40936bcd504b0, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 0.8084337, y: 1.3180482, z: 2.0191479}
+  m_Center: {x: 0.0000038142134, y: 0.6590164, z: 0.21180902}
 --- !u!1001 &1729001185
 PrefabInstance:
   m_ObjectHideFlags: 0
