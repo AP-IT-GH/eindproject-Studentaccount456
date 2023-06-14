@@ -21,6 +21,6 @@ Reinforcement learning:
 
 [1. Attempt 1 (failed)](https://github.com/AP-IT-GH/eindproject-Studentaccount456/tree/NewMain/Assets/ID_004/Scripts/Final_Project)
 \
-[2. Attempt 2 (failed)](https://github.com/AP-IT-GH/eindproject-Studentaccount456/tree/NewMain/Assets/ID_002/Scripts)
+[2. Attempt 2 (Not good enough)](https://github.com/AP-IT-GH/eindproject-Studentaccount456/tree/NewMain/Assets/ID_002/Scripts)
 \
 [2. Attempt 3 (final attempt => most complete)](https://github.com/AP-IT-GH/eindproject-Studentaccount456/tree/NewMain/Assets/ID_003/Scripts)

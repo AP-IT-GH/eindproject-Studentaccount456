@@ -10751,11 +10751,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef264a4d82a30394983293e7f3e54b6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mooseAnimator: {fileID: 1642415246}
-  bearAnimator: {fileID: 1722029044}
-  lightOrbAnimator: {fileID: 958715206}
-  mooseGhostPrefab: {fileID: 1642415242}
-  bearGhostPrefab: {fileID: 1722029040}
 --- !u!95 &958715206
 Animator:
   serializedVersion: 5

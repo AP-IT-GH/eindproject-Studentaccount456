@@ -14,8 +14,8 @@ public class LightorbCollider : MonoBehaviour
     private const float MinX = 3f;
     private const float MaxX = 40f;
     private const float Y = 90f;
-    private const float MinZ = 22f;  // Swapped with Y
-    private const float MaxZ = 95f;  // Swapped with Y
+    private const float MinZ = 22f;
+    private const float MaxZ = 95f;
     private const float DelayedY = 10f;
     private const float DelayTime = 2f;
 
@@ -40,8 +40,9 @@ public class LightorbCollider : MonoBehaviour
 
             if (ghostRigidbody != null)
             {
+                ghostRigidbody.velocity = Vector3.zero;
+                ghostRigidbody.angularVelocity = Vector3.zero;
                 rigidbodies.Add(ghostRigidbody);
-                ghostRigidbody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
             }
             if (ghostAnimator != null)
             {
@@ -59,8 +60,9 @@ public class LightorbCollider : MonoBehaviour
 
             if (ghostRigidbody != null)
             {
+                ghostRigidbody.velocity = Vector3.zero;
+                ghostRigidbody.angularVelocity = Vector3.zero;
                 rigidbodies.Add(ghostRigidbody);
-                ghostRigidbody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
             }
             if (ghostAnimator != null)
             {
@@ -69,8 +71,10 @@ public class LightorbCollider : MonoBehaviour
             }
         }
 
-        
-        StartCoroutine(DelayedResetPosition(collision.gameObject));
+        if (!collision.collider.CompareTag("Lightorb"))
+        {
+            StartCoroutine(DelayedResetPosition(collision.gameObject));
+        }
     }
 
     private GameObject InstantiateGhostObject(GameObject ghostPrefab)
@@ -95,24 +99,13 @@ public class LightorbCollider : MonoBehaviour
             {
                 originalRigidbody.velocity = Vector3.zero;
                 originalRigidbody.angularVelocity = Vector3.zero;
-                originalRigidbody.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
-                rigidbodies.Add(originalRigidbody);
+                originalRigidbody.position = new Vector3(originalRigidbody.position.x, DelayedY, originalRigidbody.position.z);
+                rigidbodies.Remove(originalRigidbody);
             }
             else
             {
                 Debug.LogError("Rigidbody component not found on the ghost object!");
             }
-
-            original.transform.position = new Vector3(original.transform.position.x, DelayedY, original.transform.position.z);
-            original.transform.rotation = Quaternion.identity;
-
-            Debug.Log("Position reset for object: " + original.name);
-        }
-
-        foreach (Rigidbody rb in rigidbodies)
-        {
-            if (rb != null)
-                rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
         }
 
         foreach (Animator animator in animators)
@@ -121,4 +114,5 @@ public class LightorbCollider : MonoBehaviour
                 animator.enabled = false;
         }
     }
+
 }
