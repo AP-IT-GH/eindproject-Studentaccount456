@@ -2,22 +2,58 @@
     "ChaserAgent": {
         "checkpoints": [
             {
-                "steps": 2637,
-                "file_path": "results\\test1\\ChaserAgent\\ChaserAgent-2637.onnx",
-                "reward": 1.875,
-                "creation_time": 1686603040.6321473,
+                "steps": 499986,
+                "file_path": "results\\test1\\ChaserAgent\\ChaserAgent-499986.onnx",
+                "reward": 10.0,
+                "creation_time": 1686720045.5949643,
                 "auxillary_file_paths": [
-                    "results\\test1\\ChaserAgent\\ChaserAgent-2637.pt"
+                    "results\\test1\\ChaserAgent\\ChaserAgent-499986.pt"
+                ]
+            },
+            {
+                "steps": 502351,
+                "file_path": "results\\test1\\ChaserAgent\\ChaserAgent-502351.onnx",
+                "reward": 8.152173913043478,
+                "creation_time": 1686720179.6828809,
+                "auxillary_file_paths": [
+                    "results\\test1\\ChaserAgent\\ChaserAgent-502351.pt"
+                ]
+            },
+            {
+                "steps": 738734,
+                "file_path": "results\\test1\\ChaserAgent\\ChaserAgent-738734.onnx",
+                "reward": 6.5,
+                "creation_time": 1686725177.451184,
+                "auxillary_file_paths": [
+                    "results\\test1\\ChaserAgent\\ChaserAgent-738734.pt"
+                ]
+            },
+            {
+                "steps": 745596,
+                "file_path": "results\\test1\\ChaserAgent\\ChaserAgent-745596.onnx",
+                "reward": 6.576388888888889,
+                "creation_time": 1686725745.8598843,
+                "auxillary_file_paths": [
+                    "results\\test1\\ChaserAgent\\ChaserAgent-745596.pt"
+                ]
+            },
+            {
+                "steps": 766118,
+                "file_path": "results\\test1\\ChaserAgent\\ChaserAgent-766118.onnx",
+                "reward": null,
+                "creation_time": 1686727995.8884013,
+                "auxillary_file_paths": [
+                    "results\\test1\\ChaserAgent\\ChaserAgent-766118.pt"
                 ]
             }
         ],
         "final_checkpoint": {
-            "steps": 2637,
+            "steps": 766118,
             "file_path": "results\\test1\\ChaserAgent.onnx",
-            "reward": 1.875,
-            "creation_time": 1686603040.6321473,
+            "reward": null,
+            "creation_time": 1686727995.8884013,
             "auxillary_file_paths": [
-                "results\\test1\\ChaserAgent\\ChaserAgent-2637.pt"
+                "results\\test1\\ChaserAgent\\ChaserAgent-766118.pt"
             ]
         }
     },
