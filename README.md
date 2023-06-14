@@ -23,10 +23,10 @@ The project uses unity version: 2021.3.23f1
 
 ### 2. Documentation
 
-!Warning links don't work yet!
-
-[0. Documentation page](https://github.com/AP-IT-GH/eindproject-Studentaccount456/tree/NewMain/Assets/ID_004/Scripts)
+[0. Documentation page](https://github.com/AP-IT-GH/eindproject-Studentaccount456/tree/NewMain/Documentation)
 \
-[1. Initialisation](https://github.com/AP-IT-GH/eindproject-Studentaccount456/tree/NewMain/Assets/ID_004/Scripts)
+[1. Initialisation](https://github.com/AP-IT-GH/eindproject-Studentaccount456/tree/NewMain/Documentation/1.%20Initialisation)
 \
-[2. ML_Agents Chased documentation page](https://github.com/AP-IT-GH/eindproject-Studentaccount456/tree/NewMain/Assets/ID_004/Scripts)
+[2. ML_Agents Chased documentation page](https://github.com/AP-IT-GH/eindproject-Studentaccount456/tree/NewMain/Documentation/2.%20ML_Agents)
+\
+[3. VR-Environment](https://github.com/AP-IT-GH/eindproject-Studentaccount456/tree/NewMain/Documentation/3.%20VR_Environment)
