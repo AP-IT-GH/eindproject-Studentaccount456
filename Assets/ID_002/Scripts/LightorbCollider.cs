@@ -7,6 +7,7 @@ public class LightorbCollider : MonoBehaviour
 {
     [SerializeField] private Animator mooseAnimator;
     [SerializeField] private Animator bearAnimator;
+    [SerializeField] private Animator lightOrbAnimator;
     [SerializeField] private GameObject mooseGhostPrefab;
     [SerializeField] private GameObject bearGhostPrefab;
 
@@ -27,6 +28,7 @@ public class LightorbCollider : MonoBehaviour
         if (collision.collider.CompareTag("MooseGhost"))
         {
             mooseAnimator.SetTrigger("MooseDies");
+            lightOrbAnimator.SetTrigger("LightOrbExplode");
             GameObject ghost = InstantiateGhostObject(mooseGhostPrefab);
             Rigidbody ghostRigidbody = ghost.GetComponent<Rigidbody>();
             Animator ghostAnimator = ghost.GetComponent<Animator>();
@@ -45,6 +47,7 @@ public class LightorbCollider : MonoBehaviour
         else if (collision.collider.CompareTag("BearGhost"))
         {
             bearAnimator.SetTrigger("BearDies");
+            lightOrbAnimator.SetTrigger("LightOrbExplode");
             GameObject ghost = InstantiateGhostObject(bearGhostPrefab);
             Rigidbody ghostRigidbody = ghost.GetComponent<Rigidbody>();
             Animator ghostAnimator = ghost.GetComponent<Animator>();
