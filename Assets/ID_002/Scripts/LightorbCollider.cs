@@ -18,10 +18,15 @@ public class LightorbCollider : MonoBehaviour
     private const float Z = 90f;
     private const float DelayedY = 10f;
     private const float DelayTime = 2f;
-    // private const int ScoreIncrement = 10;
 
     private List<Rigidbody> rigidbodies = new List<Rigidbody>();
     private List<Animator> animators = new List<Animator>();
+    private ScoreManager scoreManager;
+
+    private void Start()
+    {
+        scoreManager = GameObject.FindObjectOfType(typeof(ScoreManager)) as ScoreManager;
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -64,7 +69,7 @@ public class LightorbCollider : MonoBehaviour
             }
         }
 
-        //IncreaseScore();
+        scoreManager.Reward();
         StartCoroutine(DelayedResetPosition(collision.gameObject));
     }
 
