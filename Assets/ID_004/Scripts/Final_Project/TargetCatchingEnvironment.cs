@@ -54,6 +54,7 @@ public class TargetCatchingEnvironment : MonoBehaviour
     private void ResetScene()
     {
         // Reset the target object and agents to their starting positions
+        // (random postions not yet implemented)
         targetObject.transform.position = targetStartingPosition;
         targetObject.transform.rotation = targetStartingRotation;
         int i = 0;

@@ -1,4 +1,4 @@
-# VR Experience End Project
+# VR_Experience End Project
 
 ## Project name: Chased
 
@@ -9,26 +9,24 @@ Group members:
 - Stoica Marius (MariusSpaceEngineer)
 - Van Loon Joppe (Joppe-vL)
 
-### 1. Initialisation Github repository
+### 1. Project description
 
-Unity version: 2021.3.23f1
+The player gets chased by ghosts. He can fend these off with light orbs.
 
-When we tried to work with the ML-Agents plugin for unity we came accross many issues when starting from the VR room unity project. Thus we will initialise this github repository by all pulling the base project and installing the ML-Agents and VR plugins on our devices before doing a push.
+The lightorbs are scattered around the map. The player also attains light orbs automatically in his inventory. This happens through timed intervals. For example after every 30 seconds.
 
-#### Step plan for initialising this project:
+The goal of the game is to get to the extraction zone.
 
-1. You have to add these packages (read the notes below the image first):
+![imageexplanation](ImagesREADME/ExplanationProject.JPG)
 
-![imagepackages](ImagesREADME/Installed_Packages.JPG)
+The project uses unity version: 2021.3.23f1
+
+### 2. Documentation
+
+[0. Documentation page](https://github.com/AP-IT-GH/eindproject-Studentaccount456/tree/NewMain/Documentation)
 \
-Notes:
-
-- With the OpenXR Plugin package you might get a pop-up asking to activate the native backends. Press Yes
-- With the XR Interaction Toolkit package you might get a pop-up on which the message itself explains that you have to press no. (For newly installed projects press no)
-- XR Plugin Management may be installed but not show up in the "in project tab". It should show it's installed in the unity registry though.
-
-2. Make sure that in Edit/ProjectSettings -> XR Plug-in Management -> OpenXR that in the Interaction Profiles the ones in the image are selected.
-
-![ImageInteractionProfiles](ImagesREADME/Interaction_Profiles.jpg)
-
-3. If errors are present it might be because you need to restart the unity editor.
+[1. Initialisation](https://github.com/AP-IT-GH/eindproject-Studentaccount456/tree/NewMain/Documentation/1.%20Initialisation)
+\
+[2. ML_Agents Chased documentation page](https://github.com/AP-IT-GH/eindproject-Studentaccount456/tree/NewMain/Documentation/2.%20ML_Agents)
+\
+[3. VR-Environment](https://github.com/AP-IT-GH/eindproject-Studentaccount456/tree/NewMain/Documentation/3.%20VR_Environment)

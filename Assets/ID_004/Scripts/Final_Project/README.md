@@ -1,18 +1,93 @@
-Environment script hint we may need to use later:
+# ML-Agents: Attempt 1
 
-The BehaviorParameters component is useful in the environment script because it allows you to customize various settings for the agents in your environment. Here are some reasons why you might want to use the BehaviorParameters component:
+This README will explain the functionality of how the first attempt at ML_Agents functionality was tried.
 
-Number of agents: You can use the BehaviorParameters component to specify the number of agents in your environment. This can be useful if you want to create an environment with multiple agents that interact with each other.
-Observation space: You can use the BehaviorParameters component to specify the size and type of the observation space for your agents. This can be useful if you want your agents to receive different types of observations, such as visual or numerical inputs.
-Action space: You can use the BehaviorParameters component to specify the size and type of the action space for your agents. This can be useful if you want your agents to take different types of actions, such as discrete or continuous actions.
-Training settings: You can use the BehaviorParameters component to specify various training settings for your agents, such as the maximum number of steps per episode, the number of episodes to train for, and the learning rate of the neural network.
-By using the BehaviorParameters component, you can easily customize your environment to meet your needs and experiment with different settings to see how they affect the behavior of your agents.
+## AgentScript.cs
 
-For more information on how to use the BehaviorParameters component, you can refer to the Unity ML-Agents documentation and the ML-Agents GitHub repository.
+### Awake + Initialize + OnEpisodeBegin:
 
-Agentscript onactionreceived:
-If the distance is greater than or equal to the threshold, we give the agent a small negative reward of -0.01. This encourages the agent to move towards the target, but not necessarily to catch it immediately.
+- Awake gets the AgentRigidbody.
+- Initialize identifies the target through a tag.
+- OnEpisodeBegin resets the agent when he falls off platform. He puts the agent on a random location on the platform.
 
-Change input to use continous (Don't know yet if this is necessary):
+![Beginmethodsexplanation](ImagesREADME/Beginmethods.png)
 
-Change the input and output shapes of the agent's brain to use continuous values. You can do this by going to the ML-Agents -> Brain menu in the Unity Editor, selecting the agent's brain, and changing the Action Space Type to Continuous.
+### CollectObservations:
+
+We collect these observations:
+
+- The agent's own position
+- The agent's velocity
+- The agent's distance to the target
+- The position of the second agent
+
+![Collectobservationsexplanation](ImagesREADME/Collectobserv.png)
+
+### OnActionReceived:
+
+The OnActionReceived method receives two discrete actions from the agent. moveX (x-axis) and moveZ (z-axis), and maps them to specific forces to apply to the agent's rigidbody.
+
+The two switch statements in the code map the discrete actions to specific forces to apply to the addForce vector. For example, if moveX is 1, the addForce.x value will be set to -1, which will move the agent to the left.
+
+In summary, the first part of the OnActionReceived method receives actions from the agent and maps them to specific forces to move the agent in the scene.
+
+Aside from that the OnActionReceived method also calculates the distance between him, the target and the second agent.
+
+Rewards:
+
+- +1: When the agent is close to the target and the second agent. This to endore closing in on the target.
+- +0.5: When the agent is only close to the target.
+- -0.01: When the agent is far from the target. Small negative reward to encourage agent to move towards target but not catch it immediately.
+
+A final thing OnActionReceived also takes care off is, if the agent falls of the platform then the episode will end.
+
+![OnActionReceivedexplanation](ImagesREADME/Onactreceive.png)
+![OnActionReceivedexplanation2](ImagesREADME/Onactreceive2.png)
+
+### OnTriggerEnter:
+
+An OnTriggerEnter is used for being able to know when the agent catches the target. When the OnTriggerEnter triggers the code will check which agent catched the target, it will reward that agent accordingly. It will also check the current distances between target - agent and agent1 - agent2.
+
+Rewards:
+
+- +1: The agent that catches the target.
+- +0.1: For both agents when one catches the target and both were close to it. (To endorse working together with closing in)
+
+![OnTriggerEnterExplanation](ImagesREADME/Ontrigenter.png)
+
+## TargetCatchingEnvironment.cs
+
+### Start
+
+The start method registers the:
+
+- Target
+- Agents
+
+It also puts the agents in a SimpleMultiAgentGroup.
+
+![Startexplanation](ImagesREADME/envStart.png)
+
+### OnTriggerEnter
+
+The OnTriggerEnter method checks when the target is caught. It gives a groupreward of one to the SimpleMultiAgentGroup. Afterwards it ends the group episode and resets the scene.
+
+![OnTriggerEnterEnvExplanation](ImagesREADME/OnTrigenterenv.png)
+
+### ResetScene
+
+The ResetScene method resets the agents and target to the startpositions and their startrotations. Because the code didn't work the functionality of resetting the scene with random positions wasn't implemented.
+
+![ResetSceneExplanation](ImagesREADME/ResScene.png)
+
+## Config file for ML_Agents
+
+### AgentScript.yaml
+
+The config file is made for two agents. It used the ppo trainer type.
+
+![ConfigfileExplanation](ImagesREADME/Agenscript.png)
+
+## Scene setup
+
+![SceneSetup](ImagesREADME/Scenesetup.JPG)
