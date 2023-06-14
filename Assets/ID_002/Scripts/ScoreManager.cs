@@ -15,12 +15,12 @@ public class ScoreManager : MonoBehaviour
     }
     public void Reward()
     {
-        amount += 5;
+        amount += 10;
         UpdateScore();
     }
     public void Punishment()
     {
-        amount -= 5;
+        amount -= 10;
         UpdateScore();
     }
     private void UpdateScore()
