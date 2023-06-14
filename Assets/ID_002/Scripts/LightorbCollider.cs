@@ -11,11 +11,11 @@ public class LightorbCollider : MonoBehaviour
     [SerializeField] private GameObject mooseGhostPrefab;
     [SerializeField] private GameObject bearGhostPrefab;
 
-    private const float MinY = 22f;
-    private const float MaxY = 95f;
     private const float MinX = 3f;
     private const float MaxX = 40f;
-    private const float Z = 90f;
+    private const float Y = 90f;
+    private const float MinZ = 22f;  // Swapped with Y
+    private const float MaxZ = 95f;  // Swapped with Y
     private const float DelayedY = 10f;
     private const float DelayTime = 2f;
 
@@ -69,16 +69,17 @@ public class LightorbCollider : MonoBehaviour
             }
         }
 
-        scoreManager.Reward();
+        
         StartCoroutine(DelayedResetPosition(collision.gameObject));
     }
 
     private GameObject InstantiateGhostObject(GameObject ghostPrefab)
     {
+        scoreManager.Reward();
         float randomX = Random.Range(MinX, MaxX);
-        float randomY = Random.Range(MinY, MaxY);
+        float randomZ = Random.Range(MinZ, MaxZ);
 
-        Vector3 position = new Vector3(randomX, randomY, Z);
+        Vector3 position = new Vector3(randomX, Y, randomZ);
         GameObject ghost = Instantiate(ghostPrefab, position, Quaternion.identity);
         return ghost;
     }
