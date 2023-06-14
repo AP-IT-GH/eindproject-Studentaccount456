@@ -1,6 +1,6 @@
-# 2. ML_Agents documentation
+# 2. ML-Agents documentation
 
-## A. Goal ML_Agents
+## A. Goal ML-Agents
 
 The agents need to be able:
 
