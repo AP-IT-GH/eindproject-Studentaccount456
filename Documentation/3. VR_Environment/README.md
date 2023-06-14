@@ -9,4 +9,5 @@ Below are some images from the VR environment.
 **Light orb:**
 ![LightOrbImage](ImagesREADME/LightOrb.png)
 **Top view map:**
+\
 ![TopViewImage](ImagesREADME/FullMap.png)
