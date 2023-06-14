@@ -7,6 +7,10 @@ TagManager:
   - Target
   - Agent1
   - Agent2
+  - Obstacle
+  - Lightorb
+  - MooseGhost
+  - BearGhost
   layers:
   - Default
   - TransparentFX
