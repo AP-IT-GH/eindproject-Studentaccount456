@@ -29,4 +29,4 @@ The project uses unity version: 2021.3.23f1
 \
 [2. ML_Agents Chased documentation page](https://github.com/AP-IT-GH/eindproject-Studentaccount456/tree/NewMain/Documentation/2.%20ML_Agents)
 \
-[3. VR-Environment](https://github.com/AP-IT-GH/eindproject-Studentaccount456/tree/NewMain/Documentation/2.%20ML_Agents)
+[3. VR-Environment](https://github.com/AP-IT-GH/eindproject-Studentaccount456/tree/NewMain/Documentation/3.%20VR_Environment)
