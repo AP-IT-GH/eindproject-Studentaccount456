@@ -19,7 +19,7 @@ For ML_Agents we attempted several times to get it working. This section is to r
 
 Reinforcement learning:
 
-[1. Attempt 1 (failed)](https://github.com/AP-IT-GH/eindproject-Studentaccount456/tree/NewMain/Assets/ID_004/Scripts)
+[1. Attempt 1 (failed)](https://github.com/AP-IT-GH/eindproject-Studentaccount456/tree/NewMain/Assets/ID_004/Scripts/Final_Project)
 \
 [2. Attempt 2 (failed)](https://github.com/AP-IT-GH/eindproject-Studentaccount456/tree/NewMain/Assets/ID_002/Scripts)
 \
