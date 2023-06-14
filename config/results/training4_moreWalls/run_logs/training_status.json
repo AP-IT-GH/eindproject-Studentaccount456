@@ -1,0 +1,65 @@
+{
+    "ChaseAgent": {
+        "checkpoints": [
+            {
+                "steps": 2499974,
+                "file_path": "results\\training4_moreWalls\\ChaseAgent\\ChaseAgent-2499974.onnx",
+                "reward": -0.7488888439204958,
+                "creation_time": 1686742417.4345117,
+                "auxillary_file_paths": [
+                    "results\\training4_moreWalls\\ChaseAgent\\ChaseAgent-2499974.pt"
+                ]
+            },
+            {
+                "steps": 2999983,
+                "file_path": "results\\training4_moreWalls\\ChaseAgent\\ChaseAgent-2999983.onnx",
+                "reward": -0.6854385578057223,
+                "creation_time": 1686743275.0075288,
+                "auxillary_file_paths": [
+                    "results\\training4_moreWalls\\ChaseAgent\\ChaseAgent-2999983.pt"
+                ]
+            },
+            {
+                "steps": 3499989,
+                "file_path": "results\\training4_moreWalls\\ChaseAgent\\ChaseAgent-3499989.onnx",
+                "reward": -0.5942552901725185,
+                "creation_time": 1686744160.700274,
+                "auxillary_file_paths": [
+                    "results\\training4_moreWalls\\ChaseAgent\\ChaseAgent-3499989.pt"
+                ]
+            },
+            {
+                "steps": 3999944,
+                "file_path": "results\\training4_moreWalls\\ChaseAgent\\ChaseAgent-3999944.onnx",
+                "reward": -0.5968181555244055,
+                "creation_time": 1686745025.0449653,
+                "auxillary_file_paths": [
+                    "results\\training4_moreWalls\\ChaseAgent\\ChaseAgent-3999944.pt"
+                ]
+            },
+            {
+                "steps": 4485169,
+                "file_path": "results\\training4_moreWalls\\ChaseAgent\\ChaseAgent-4485169.onnx",
+                "reward": -0.3480000104755163,
+                "creation_time": 1686745949.1066327,
+                "auxillary_file_paths": [
+                    "results\\training4_moreWalls\\ChaseAgent\\ChaseAgent-4485169.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 4485169,
+            "file_path": "results\\training4_moreWalls\\ChaseAgent.onnx",
+            "reward": -0.3480000104755163,
+            "creation_time": 1686745949.1066327,
+            "auxillary_file_paths": [
+                "results\\training4_moreWalls\\ChaseAgent\\ChaseAgent-4485169.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "1.7.1+cu110"
+    }
+}

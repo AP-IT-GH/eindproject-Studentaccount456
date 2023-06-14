@@ -1,3 +1,4 @@
+using Grpc.Core;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.MLAgents;
@@ -6,7 +7,7 @@ using Unity.MLAgents.Sensors;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
-public class ChaseAgent : Agent
+public class ChaseAgent2 : Agent
 {
     //Variable to hold the rigidbody of the agent
     Rigidbody rBody;
@@ -16,12 +17,56 @@ public class ChaseAgent : Agent
     public GameObject groundPlane; // Reference to the ground plane object
     private Bounds areaBounds;
 
+    public GameObject wallPrefab; // Reference to the wall prefab
+    public int numWalls; // Number of walls to spawn
+
+    private List<GameObject> walls; // List to store spawned walls
 
     void Start()
     {
         //Assigning the rigidbody
         rBody = GetComponent<Rigidbody>();
         areaBounds = groundPlane.GetComponent<Collider>().bounds;
+
+    }
+
+    private void SpawnWalls()
+    {
+        // Initialize the list
+        walls = new List<GameObject>();
+
+        // Spawn the specified number of walls
+        for (int i = 0; i < numWalls; i++)
+        {
+            // Calculate random spawn position within the ground plane bounds
+            Vector3 spawnPos = GetRandomPositionOnGround();
+
+            // Adjust the spawn position relative to the ground plane
+            spawnPos += groundPlane.transform.position;
+
+            // Calculate a random rotation for the wall
+            Quaternion randomRotation = Quaternion.Euler(0f, Random.Range(0f, 360f), 0f);
+
+            // Instantiate the wall prefab at the spawn position with random rotation
+            GameObject wall = Instantiate(wallPrefab, spawnPos, randomRotation);
+
+            // Add the wall to the list
+            walls.Add(wall);
+        }
+    }
+
+
+
+    private void DestroyWalls()
+    {
+        // Destroy all spawned walls
+        foreach (GameObject wall in walls)
+        {
+            Destroy(wall);
+        }
+
+        // Clear the list
+        walls.Clear();
     }
 
 
@@ -39,6 +84,9 @@ public class ChaseAgent : Agent
 
         // Move the target to a new spot on the ground plane
         Target.localPosition = GetRandomPositionOnGround();
+
+        // Spawn walls
+        SpawnWalls();
     }
 
     private Vector3 GetRandomPositionOnGround()
@@ -47,7 +95,7 @@ public class ChaseAgent : Agent
         // Calculate the random spawn position within the ground plane bounds
         float xSpawn = Random.Range(-areaBounds.extents.x, areaBounds.extents.x);
         float zSpawn = Random.Range(-areaBounds.extents.z, areaBounds.extents.z);
-        float ySpawn = areaBounds.extents.y +  2.5f; // Add a small offset to spawn on top
+        float ySpawn = areaBounds.extents.y + 2.5f; // Add a small offset to spawn on top
 
         Vector3 spawnPos = new Vector3(xSpawn, ySpawn, zSpawn);
 
@@ -69,6 +117,7 @@ public class ChaseAgent : Agent
         if (this.transform.localPosition.y < groundPlane.transform.localPosition.y)
         {
             SetReward(-1.0f);
+            DestroyWalls();
             EndEpisode();
         }
     }
@@ -83,7 +132,22 @@ public class ChaseAgent : Agent
                 SetReward(1.0f);
                 hasTouchedTarget = true;
             }
+            DestroyWalls();
             EndEpisode();
+        }
+        else if (collision.gameObject.CompareTag("Wall"))
+        {
+            Debug.Log("Touches wall");
+            AddReward(-0.5f); // Negative reward for touching a wall
+        }
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            Debug.Log("Keeps touching the wall");
+            AddReward(-0.1f); // Negative reward for touching a wall
         }
     }
 
