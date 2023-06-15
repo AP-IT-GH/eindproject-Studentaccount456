@@ -1,0 +1,29 @@
+{
+    "ChaseAgent": {
+        "checkpoints": [
+            {
+                "steps": 12116,
+                "file_path": "results\\training5-collab\\ChaseAgent\\ChaseAgent-12116.onnx",
+                "reward": -1.0699999988079072,
+                "creation_time": 1686776360.6370025,
+                "auxillary_file_paths": [
+                    "results\\training5-collab\\ChaseAgent\\ChaseAgent-12116.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 12116,
+            "file_path": "results\\training5-collab\\ChaseAgent.onnx",
+            "reward": -1.0699999988079072,
+            "creation_time": 1686776360.6370025,
+            "auxillary_file_paths": [
+                "results\\training5-collab\\ChaseAgent\\ChaseAgent-12116.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "1.7.1+cu110"
+    }
+}

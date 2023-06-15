@@ -1,0 +1,47 @@
+{
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "1.7.1+cu110"
+    },
+    "ChaseAgent": {
+        "checkpoints": [
+            {
+                "steps": 24743,
+                "file_path": "results\\ppo\\ChaseAgent\\ChaseAgent-24743.onnx",
+                "reward": 0.0,
+                "creation_time": 1686427516.8183894,
+                "auxillary_file_paths": [
+                    "results\\ppo\\ChaseAgent\\ChaseAgent-24743.pt"
+                ]
+            },
+            {
+                "steps": 34536,
+                "file_path": "results\\ppo\\ChaseAgent\\ChaseAgent-34536.onnx",
+                "reward": 0.5384615384615384,
+                "creation_time": 1686427796.736962,
+                "auxillary_file_paths": [
+                    "results\\ppo\\ChaseAgent\\ChaseAgent-34536.pt"
+                ]
+            },
+            {
+                "steps": 478744,
+                "file_path": "results\\ppo\\ChaseAgent\\ChaseAgent-478744.onnx",
+                "reward": null,
+                "creation_time": 1686431654.5335052,
+                "auxillary_file_paths": [
+                    "results\\ppo\\ChaseAgent\\ChaseAgent-478744.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 478744,
+            "file_path": "results\\ppo\\ChaseAgent.onnx",
+            "reward": null,
+            "creation_time": 1686431654.5335052,
+            "auxillary_file_paths": [
+                "results\\ppo\\ChaseAgent\\ChaseAgent-478744.pt"
+            ]
+        }
+    }
+}

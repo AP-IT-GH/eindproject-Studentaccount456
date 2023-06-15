@@ -4,16 +4,24 @@ using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class ChaseAgent : Agent
 {
     //Variable to hold the rigidbody of the agent
     Rigidbody rBody;
+    private bool hasTouchedTarget;
+
+
+    public GameObject groundPlane; // Reference to the ground plane object
+    private Bounds areaBounds;
+
 
     void Start()
     {
         //Assigning the rigidbody
         rBody = GetComponent<Rigidbody>();
+        areaBounds = groundPlane.GetComponent<Collider>().bounds;
     }
 
 
@@ -22,19 +30,28 @@ public class ChaseAgent : Agent
     public override void OnEpisodeBegin()
     {
         // If the Agent fell, zero its momentum
-        if (this.transform.localPosition.y < 0)
+        if (this.transform.localPosition.y < groundPlane.transform.localPosition.y)
         {
             this.rBody.angularVelocity = Vector3.zero;
             this.rBody.velocity = Vector3.zero;
-            this.transform.localPosition = new Vector3(Random.Range(-90f, 36f),
-                                           -7.360606f,
-                                           Random.Range(-40f, 88f));
+            this.transform.localPosition = GetRandomPositionOnGround();
         }
 
-        // Move the target to a new spot
-        Target.localPosition = new Vector3(Random.Range(-90f, 36f),
-                                           -7.360606f,
-                                           Random.Range(-40f, 88f));
+        // Move the target to a new spot on the ground plane
+        Target.localPosition = GetRandomPositionOnGround();
+    }
+
+    private Vector3 GetRandomPositionOnGround()
+    {
+
+        // Calculate the random spawn position within the ground plane bounds
+        float xSpawn = Random.Range(-areaBounds.extents.x, areaBounds.extents.x);
+        float zSpawn = Random.Range(-areaBounds.extents.z, areaBounds.extents.z);
+        float ySpawn = areaBounds.extents.y +  2.5f; // Add a small offset to spawn on top
+
+        Vector3 spawnPos = new Vector3(xSpawn, ySpawn, zSpawn);
+
+        return spawnPos;
     }
 
 
@@ -45,20 +62,27 @@ public class ChaseAgent : Agent
         // Move the agent using the action.
         MoveAgent(actionBuffers.DiscreteActions);
 
+        // Reward for each step
+        SetReward(-0.01f);
 
-        // Rewards
-        float distanceToTarget = Vector3.Distance(this.transform.localPosition, Target.localPosition);
-
-        // Reached target
-        if (distanceToTarget < 7f)
+        // Check if the agent has fallen off the plane
+        if (this.transform.localPosition.y < groundPlane.transform.localPosition.y)
         {
-            SetReward(1.0f);
+            SetReward(-1.0f);
             EndEpisode();
         }
+    }
 
-        // Fell off platform
-        else if (this.transform.localPosition.y < -10f)
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Target"))
         {
+            if (!hasTouchedTarget)
+            {
+                Debug.Log("rewarded");
+                SetReward(1.0f);
+                hasTouchedTarget = true;
+            }
             EndEpisode();
         }
     }
@@ -68,44 +92,53 @@ public class ChaseAgent : Agent
         var dirToGo = Vector3.zero;
         var rotateDir = Vector3.zero;
 
-        var action = act[0];
+        var moveAction = act[0];
+        var rotateAction = act[1];
 
-        switch (action)
+        // Determine movement direction
+        switch (moveAction)
         {
             case 1:
                 dirToGo = transform.forward * 1f;
                 break;
-            case 2: 
-                break;
-            case 3:
-                rotateDir = transform.up * 1f;
-                break;
-            case 4:
-                rotateDir = transform.up * -1f;
-                break;
-            case 5:
+            case 2:
                 break;
         }
+
+        // Determine rotation direction
+        switch (rotateAction)
+        {
+            case 1:
+                rotateDir = transform.up * 1f;
+                break;
+            case 2:
+                rotateDir = transform.up * -1f;
+                break;
+            case 3:
+                break;
+        }
+
         transform.Rotate(rotateDir, Time.fixedDeltaTime * 200f);
-        rBody.AddForce(dirToGo * 2,
-            ForceMode.VelocityChange);
+        rBody.AddForce(dirToGo * 2, ForceMode.VelocityChange);
     }
+
 
 
     public override void Heuristic(in ActionBuffers actionsOut)
     {
         var discreteActionsOut = actionsOut.DiscreteActions;
-        if (Input.GetKey(KeyCode.D))
-        {
-            discreteActionsOut[0] = 3;
-        }
-        else if (Input.GetKey(KeyCode.W))
+
+        if (Input.GetKey(KeyCode.W))
         {
             discreteActionsOut[0] = 1;
         }
+        else if (Input.GetKey(KeyCode.D))
+        {
+            discreteActionsOut[1] = 1;
+        }
         else if (Input.GetKey(KeyCode.A))
         {
-            discreteActionsOut[0] = 4;
+            discreteActionsOut[1] = 2;
         }
     }
 
