@@ -1,0 +1,56 @@
+{
+    "ChaseAgent": {
+        "checkpoints": [
+            {
+                "steps": 499996,
+                "file_path": "results\\training4\\ChaseAgent\\ChaseAgent-499996.onnx",
+                "reward": -0.03999999910593033,
+                "creation_time": 1686736242.131558,
+                "auxillary_file_paths": [
+                    "results\\training4\\ChaseAgent\\ChaseAgent-499996.pt"
+                ]
+            },
+            {
+                "steps": 999992,
+                "file_path": "results\\training4\\ChaseAgent\\ChaseAgent-999992.onnx",
+                "reward": -0.7468181416307661,
+                "creation_time": 1686737284.5179594,
+                "auxillary_file_paths": [
+                    "results\\training4\\ChaseAgent\\ChaseAgent-999992.pt"
+                ]
+            },
+            {
+                "steps": 999998,
+                "file_path": "results\\training4\\ChaseAgent\\ChaseAgent-999998.onnx",
+                "reward": 0.9799999892711639,
+                "creation_time": 1686737754.604855,
+                "auxillary_file_paths": [
+                    "results\\training4\\ChaseAgent\\ChaseAgent-999998.pt"
+                ]
+            },
+            {
+                "steps": 1002956,
+                "file_path": "results\\training4\\ChaseAgent\\ChaseAgent-1002956.onnx",
+                "reward": -0.3387096587929033,
+                "creation_time": 1686737838.2790732,
+                "auxillary_file_paths": [
+                    "results\\training4\\ChaseAgent\\ChaseAgent-1002956.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1002956,
+            "file_path": "results\\training4\\ChaseAgent.onnx",
+            "reward": -0.3387096587929033,
+            "creation_time": 1686737838.2790732,
+            "auxillary_file_paths": [
+                "results\\training4\\ChaseAgent\\ChaseAgent-1002956.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "1.7.1+cu110"
+    }
+}
