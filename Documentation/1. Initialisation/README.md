@@ -14,7 +14,7 @@ When we tried to work with the ML-Agents plugin for unity we came accross many i
 \
 Notes:
 
-- With the OpenXR Plugin package you might get a pop-up asking to activate the native backends. Press Yes
+- With the Oculus XR Plugin package you might get a pop-up asking to activate the native backends. Press Yes
 - With the XR Interaction Toolkit package you might get a pop-up on which the message itself explains that you have to press no. (For newly installed projects press no)
 - XR Plugin Management may be installed but not show up in the "in project tab". It should show it's installed in the unity registry though.
 
