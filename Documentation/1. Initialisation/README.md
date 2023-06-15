@@ -4,9 +4,9 @@ Unity version: 2021.3.23f1
 
 ---
 
-When we tried to work with the ML-Agents plugin for unity we came accross many issues when starting from the VR room unity project. Thus we will initialise this github repository by all pulling the base project and installing the ML-Agents and VR plugins on our devices before doing a push.
+When we tried to work with the ML-Agents plugin for unity we came accross many issues when working with git. We also ran into some issues with the VR_Room template. Thus we put the packages in the .gitignore to avoid running into the same issues. Because of this everyone will have to configure some things manually for ML_Agents and VR-Functionalities.
 
-#### Step plan for initialising this project:
+### Step plan for initialising this project:
 
 \
 **Note: If errors are present it might be because you need to restart the unity editor.**
@@ -21,7 +21,7 @@ Notes:
 - With the XR Interaction Toolkit package you might get a pop-up on which the message itself explains that you have to press no. (For newly installed projects press no)
 - XR Plugin Management may be installed but not show up in the "in project tab". It should show it's installed in the unity registry though. This is due to the Oculus XR Plugin, this plugin has a depency on it and will install it if it's not avaible yet.
 
-2. In Edit/ProjectSettings -> XR Plug-in Management: Make sure Oculus is slected. Otherwise it won't work with the Meta Quest 2.
+2. In Edit/ProjectSettings -> XR Plug-in Management: Make sure Oculus is selected. Otherwise it won't work with the Meta Quest 2.
 
 ![ImageXRPluginManager](ImagesREADME/1_XRPlugMan.JPG)
 
@@ -37,7 +37,7 @@ Notes:
 
 ![ImagePlayerMinAPILev](ImagesREADME/3_PlayerMinAPILev.JPG)
 
-6. In Edit/ProjectSettings -> Player -> Configuration: Make sure that you put the scripting backend on IL2CPP (this allows you to use ARM64). Put the target architecture on ARM64 and put the install location on automatic. Putting it on automatic lets you ptu your builds directly on your VR-Headset.
+6. In Edit/ProjectSettings -> Player -> Configuration: Make sure that you put the scripting backend on IL2CPP (this allows you to use ARM64). Put the target architecture on ARM64 and put the install location on automatic. Putting it on automatic lets you put your builds directly on your VR-Headset.
 
 ![4_PlayerPorjSet2](ImagesREADME/4_PlayerPorjSet2.JPG)
 
