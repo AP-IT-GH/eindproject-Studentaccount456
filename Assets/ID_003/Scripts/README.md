@@ -37,4 +37,4 @@
 
 ## Tensorboard
 
-![Tensorboard illustration](ImagesREADME/Tensorboard.png)#
+![Tensorboard illustration](ImagesREADME/Tensorbord.png)#
