@@ -23,27 +23,27 @@ Notes:
 
 2. In Edit/ProjectSettings -> XR Plug-in Management: Make sure Oculus is slected. Otherwise it won't work with the Meta Quest 2.
 
-![ImageXRPluginManager](ImagesREADME/1_XRPlugMan.jpg)
+![ImageXRPluginManager](ImagesREADME/1_XRPlugMan.JPG)
 
 3. In Edit/ProjectSettings -> XR Plug-in Management -> Oculus: Make sure you select low overhead mode.
 
-![ImageLowOverheadMode](ImagesREADME/X_Lowoverheadmode.jpg)
+![ImageLowOverheadMode](ImagesREADME/X_Lowoverheadmode.JPG)
 
 4. In Edit/ProjectSettings -> Player -> Rendering: Make sure to put color space on linear, select multithreaded rendering and put texture compression format on ASTC.
 
-![PlayerProjSet](ImagesREADME/2_PlayerProjSet.jpg)
+![PlayerProjSet](ImagesREADME/2_PlayerProjSet.JPG)
 
 5. In Edit/ProjectSettings -> Player -> Identification: Put the minimum API Level on at least android 6.0 . This is the minimum requerement for the Meta Quest 2.
 
-![ImagePlayerMinAPILev](ImagesREADME/3_PlayerMinAPILev.jpg)
+![ImagePlayerMinAPILev](ImagesREADME/3_PlayerMinAPILev.JPG)
 
 6. In Edit/ProjectSettings -> Player -> Configuration: Make sure that you put the scripting backend on IL2CPP (this allows you to use ARM64). Put the target architecture on ARM64 and put the install location on automatic. Putting it on automatic lets you ptu your builds directly on your VR-Headset.
 
-![4_PlayerPorjSet2](ImagesREADME/4_PlayerPorjSet2.jpg)
+![4_PlayerPorjSet2](ImagesREADME/4_PlayerPorjSet2.JPG)
 
 7. In Edit/ProjectSettings -> Quality: Make a new quality level with a name of your choice. For example: Standalone VR. Use the arrows at Default to select this level as default for android. Lower de pixel count to 1. Up the Anti Aliasing to 4x multi sampling and make sure Vsync is turned off. Also deselect soft particles if selected.
 
-![5_QualityprojSet](ImagesREADME/5_QualityprojSet.jpg)
+![5_QualityprojSet](ImagesREADME/5_QualityprojSet.JPG)
 
 8. In Edit/ProjectSettings -> Time: Put the fixed timestep on 1/72.
 
