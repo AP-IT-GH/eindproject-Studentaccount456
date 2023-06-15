@@ -266,6 +266,10 @@ PrefabInstance:
       propertyPath: m_BehaviorType
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1536798410776753006, guid: 163407fec36153f4abb7d7ac1f31fd63, type: 3}
+      propertyPath: numWalls
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7915157631269872037, guid: 163407fec36153f4abb7d7ac1f31fd63, type: 3}
       propertyPath: m_BehaviorType
       value: 2
