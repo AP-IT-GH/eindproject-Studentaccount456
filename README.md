@@ -32,3 +32,13 @@ The project uses unity version: 2021.3.23f1
 [3. VR-Environment](https://github.com/AP-IT-GH/eindproject-Studentaccount456/tree/NewMain/Documentation/3.%20VR_Environment)
 \
 [4. Presentation](https://github.com/AP-IT-GH/eindproject-Studentaccount456/tree/NewMain/Documentation/4.%20Presentation)
+\
+[5. Assets](https://github.com/AP-IT-GH/eindproject-Studentaccount456/tree/NewMain/Documentation/5.%20Assets)
+\
+[6. APK](https://github.com/AP-IT-GH/eindproject-Studentaccount456/tree/NewMain/Documentation/6.%20APK)
+\
+[7. Video project](https://github.com/AP-IT-GH/eindproject-Studentaccount456/tree/NewMain/Documentation/7.%20Video%20Project)
+
+### 3. Structure project
+
+In the assets folder there are 4 ID directories. Each individual in the team has an ID directory assigned to them. This is to avoid git merge conflicts. When team members want to work in each other's folder they have to signal it to the other member.
