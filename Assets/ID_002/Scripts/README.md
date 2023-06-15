@@ -16,7 +16,7 @@ This code accounts for obstacles by adding rewards and punishments where needed.
 
 ## Tensorboard
 
-This implementation does work, its just that its currently not the very best.
-Here you will find the tensorboard result.
+This implementation does work, it's just that it's currently not the very best.
+Here you will find the TensorBoard result.
 
 ![Tensorboard illustration](ImagesREADME/TensorBoard.png)
