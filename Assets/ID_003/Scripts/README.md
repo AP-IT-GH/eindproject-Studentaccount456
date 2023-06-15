@@ -13,9 +13,9 @@
 ## ChaseAgent2.cs
 
 ![ChaseAgent2.cs illustration 1](ImagesREADME/ChaseAgent2_1.png)
-![ChaseAgent2.cs illustration 2](ImagesREADME/ChaserAgent2_2.png)
+![ChaseAgent2.cs illustration 2](ImagesREADME/ChaseAgent2_2.png)
 ![ChaseAgent2.cs illustration 3](ImagesREADME/ChaseAgent2_3.png)
-![ChaseAgent2.cs illustration 4](ImagesREADME/ChaserAgent2_4.png)
+![ChaseAgent2.cs illustration 4](ImagesREADME/ChaseAgent2_4.png)
 
 ## ChasePlayer-325u.yaml
 
@@ -37,4 +37,4 @@
 
 ## Tensorboard
 
-![Tensorboard illustration](ImagesREADME/TensorBoard.png)#
+![Tensorboard illustration](ImagesREADME/Tensorboard.png)#
